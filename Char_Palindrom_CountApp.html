@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count APP</title>
+    <style>
+        
+        .card {
+            overflow: hidden;
+            position: center;
+            z-index: 3;
+            width: 50%;
+            margin: 80px 25vw 20px;
+            padding: 10px 20px 20px 20px;
+            border-radius: 1.25rem;
+            background: rgb(176, 211, 22);
+            text-align: center;
+            box-shadow: 0 100px 100px rgba(85, 37, 37, 0.1);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="card">
+        <div class="container-sm " style="font-family: Times New Roman Times, serif; color: rgb(90, 13, 7); font-size: 50px"><b>
+                -: Count Character App:-</b>
+        </div>
+        <div class="container-sm" style="font-family: Times New Roman Times, serif; color: rgb(94, 12, 87) ">
+            <h3><b>Add Your characters!</b></h3>
+        </div>
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-sm-6">
+                    <lable for="inputText1"> ENTER TEXT </lable>
+        <input type="text" id ="inputText1"placeholder="Enter text character">
+        <br>
+        <br>
+        
+        <div class="col-sm-3">
+        
+        <button type ="submit" onclick="countCharacterOnClickOfButton()" class ="btn text-dark "data-bs-toggle="modal" data-bs-target="#myModal"
+        style="padding: 5px 5px;
+        border-radius: 10px;
+        border-width: 50px;
+        border: 0.1px solid #099fff;
+        background-color: #acacdd"> Enter</button>
+        </div>   
+        <p id="displayCharaterCount"></p>  
+        <div class="container-sm" style="font-family: Times New Roman Times, serif; color: rgb(94, 12, 87) ">
+          <h3><b>Add Your String !</b></h3>
+        <div class="col-sm-3">
+          <div class="inputs">
+            <lable for="inputText1"> ENTER TEXT </lable>
+            <input type="text" spellcheck="false" placeholder="Enter text string">
+        <br>
+        <br> 
+        <button type ="submit" onclick="countCharacterOnClickOfButton()" class ="btn text-dark "data-bs-toggle="modal" data-bs-target="#myModal"
+        style="padding: 5px 5px;
+        border-radius: 10px;
+        border-width: 50px;
+        border: 0.1px solid #099fff;
+        background-color: #acacdd"> check palindrome</button>
+            <p class="info-txt"></p>
+</div>
+<script>
+    function countCharacterOnClickOfButton(){
+    const inputTextLength = document.getElementById("inputText1").value.length
+    document.getElementById("displayCharaterCount").innerHTML=" The count of character is "+ inputTextLength;
+}
+const txtInput = document.querySelector(".inputs input"),
+checkBtn = document.querySelector(".inputs button"),
+infoTxt = document.querySelector(".info-txt");
+let filterInput;
+
+checkBtn.addEventListener("click", () => {
+    let reverseInput = filterInput.split("").reverse().join("");
+    infoTxt.style.display = "block";
+    if(filterInput != reverseInput) {
+        return infoTxt.innerHTML = `No, <span>'${txtInput.value}'</span> isn't a palindrome!`;
+    }
+    infoTxt.innerHTML = `Yes, <span>'${txtInput.value}'</span> is a palindrome!`;
+});
+
+txtInput.addEventListener("keyup", () => {
+    filterInput = txtInput.value.toLowerCase().replace(/[^A-Z0-9]/ig, "");
+    if(filterInput) {
+        return checkBtn.classList.add("active");
+    }
+    infoTxt.style.display = "none";
+    checkBtn.classList.remove("active");
+})
+</script>
+
+    </body>
+
+</html>
